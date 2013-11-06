@@ -13,44 +13,44 @@ attempts = [
              LIMIT 10'''},
 
 {"query": '''MATCH (continent:Continent)<-[:is_in]-(country)<-[:comes_from]-(player)
-			 WHERE continent.name = "Europe" 
-     		 WITH player, country
-			 MATCH (player)-[:played]->(stats)-[:for]->(team:Team)
-			 RETURN player.name, SUM(stats.goals) AS goals, team.name, country.name
-			 ORDER BY goals DESC
-			 LIMIT 10'''},
+             WHERE continent.name = "Europe" 
+             WITH player, country
+             MATCH (player)-[:played]->(stats)-[:for]->(team:Team)
+             RETURN player.name, SUM(stats.goals) AS goals, team.name, country.name
+             ORDER BY goals DESC
+             LIMIT 10'''},
 
 {"query": '''MATCH (continent:Continent)<-[:is_in]-(country)
-			 WHERE continent.name = "Europe" 
-     		 WITH country
-     		 MATCH (country)<-[:comes_from]-(player)
-     		 WITH player, country
-			 MATCH (player)-[:played]->(stats)-[:for]->(team:Team)
-			 RETURN player.name, SUM(stats.goals) AS goals, team.name, country.name
-			 ORDER BY goals DESC
-			 LIMIT 10'''},
+             WHERE continent.name = "Europe" 
+             WITH country
+             MATCH (country)<-[:comes_from]-(player)
+             WITH player, country
+             MATCH (player)-[:played]->(stats)-[:for]->(team:Team)
+             RETURN player.name, SUM(stats.goals) AS goals, team.name, country.name
+             ORDER BY goals DESC
+             LIMIT 10'''},
 
 {"query": '''MATCH (continent:Continent)<-[:is_in]-(country)
-			 WHERE continent.name = "Europe" 
-     		 WITH country
-     		 MATCH (country)<-[:comes_from]-(player)
-     		 WITH player, country
-			 MATCH (player)-[:played]->(stats)-[:for]->(team:Team)
-			 WHERE stats.goals > 0
-			 RETURN player.name, SUM(stats.goals) AS goals, team.name, country.name
-			 ORDER BY goals DESC
-			 LIMIT 10'''},
+             WHERE continent.name = "Europe" 
+             WITH country
+             MATCH (country)<-[:comes_from]-(player)
+             WITH player, country
+             MATCH (player)-[:played]->(stats)-[:for]->(team:Team)
+             WHERE stats.goals > 0
+             RETURN player.name, SUM(stats.goals) AS goals, team.name, country.name
+             ORDER BY goals DESC
+             LIMIT 10'''},
 
 {"query": '''MATCH (continent:Continent)<-[:is_in]-(country)
-			 WHERE continent.name = "Europe" 
-     		 WITH country
-     		 MATCH (country)<-[:comes_from]-(player)
-     		 WITH player, country
-			 MATCH (player)-[:played]->(stats)-[:for]->(team)
-			 WHERE stats.goals > 0
-			 RETURN player.name, SUM(stats.goals) AS goals, team.name, country.name
-			 ORDER BY goals DESC
-			 LIMIT 10'''},				 
+             WHERE continent.name = "Europe" 
+             WITH country
+             MATCH (country)<-[:comes_from]-(player)
+             WITH player, country
+             MATCH (player)-[:played]->(stats)-[:for]->(team)
+             WHERE stats.goals > 0
+             RETURN player.name, SUM(stats.goals) AS goals, team.name, country.name
+             ORDER BY goals DESC
+             LIMIT 10'''},				 
 ]
 
 qp.profile(attempts, iterations=20, runs=3)
