@@ -46,3 +46,16 @@ You can then run an example query which has been tuned:
     ORDER BY goals DESC
     LIMIT 10
     Min 0.57263302803 Mean 0.585222005844 95% 0.597485733032 Max 0.598978042603
+
+#### Creating a new benchmark
+
+This is the template to follow:
+
+    import query_profiler as qp
+
+    attempts = [
+    {"query": '''MATCH (p:Player) RETURN COUNT(p)''', "params": {"define": "if you want"}},
+    {"query": '''MATCH (player:Player) RETURN COUNT(player)'''},
+    ]
+
+    qp.profile(attempts, iterations=5, runs=3)
