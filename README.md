@@ -10,7 +10,7 @@ The zip contains the 'data' directory so you can unpack that into your neo4j fol
 
 You can then run an example query which has been tuned:
 
-    $ python query.py
+    $ python top-away-scorers.py
     ===========
     Query times
     ===========
