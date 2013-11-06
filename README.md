@@ -1,5 +1,9 @@
 ### Tuning them cypher queries
 
+Install the following python libraries:
+
+    pip install py2neo numpy
+
 The data set is on dropbox and you can download it with this command:
 
     curl -L https://www.dropbox.com/s/y4gp00gfryc9syx/football.zip -o football.zip
