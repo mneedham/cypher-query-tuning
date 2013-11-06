@@ -46,9 +46,7 @@ LIMIT 10''',
 
 ]
 
-print "==========="
-print "Query times"
-print "==========="
+print ""
 
 for attempt in attempts:
 	query = attempt["query"]

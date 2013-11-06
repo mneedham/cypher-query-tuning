@@ -15,9 +15,7 @@ The zip contains the 'data' directory so you can unpack that into your neo4j fol
 You can then run an example query which has been tuned:
 
     $ python top-away-scorers.py
-    ===========
-    Query times
-    ===========
+    
     MATCH (player:Player)-[:played]->stats-[:in]->game, stats-[:for]->team
     WHERE game<-[:away_team]-team
     RETURN player.name, SUM(stats.goals) AS goals
