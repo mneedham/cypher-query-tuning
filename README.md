@@ -16,20 +16,7 @@ You can then run an example query which has been tuned:
 
     $ python top-away-scorers.py
     
-    MATCH (player:Player)-[:played]->stats-[:in]->game, stats-[:for]->team
-    WHERE game<-[:away_team]-team
-    RETURN player.name, SUM(stats.goals) AS goals
-    ORDER BY goals DESC
-    LIMIT 10
-    Min 1.67394113541 Mean 1.68005379041 95% 1.687089324 Max 1.68808412552
-
-    MATCH (player:Player)-[:played]->stats-[:in]->game, stats-[:for]->team
-    WITH player, stats, team, game
-    MATCH team-[:away_team]->game
-    RETURN player.name, SUM(stats.goals) AS goals
-    ORDER BY goals DESC
-    LIMIT 10
-    Min 1.29312396049 Mean 1.31829198201 95% 1.3343367815 Max 1.33520197868
+    <snip>
 
     MATCH (game:Game)<-[:away_team]-(team)
     WITH game, team
