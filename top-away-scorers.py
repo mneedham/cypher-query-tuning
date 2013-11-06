@@ -1,5 +1,9 @@
 import query_profiler as qp
 
+# This one becomes quicker towards the end by:
+# 1. Reducing the number of nodes covered in the initial scan
+# 2. Removing a WHERE which is 20-30% slower than doing a 'WITH MATCH'
+
 attempts = [
 {"query": '''MATCH (player:Player)-[:played]->stats-[:in]->game, stats-[:for]->team
 			 WHERE game<-[:away_team]-team

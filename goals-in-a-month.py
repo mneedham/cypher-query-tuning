@@ -1,5 +1,7 @@
 import query_profiler as qp
 
+# I couldn't find out a way to make this one quicker
+
 attempts = [
 {"query": '''MATCH (player:Player)-[:scored_in]->game<-[:in_month]-month, player-[:played]->stats-[:in]->game
 			 WHERE player.name = "Michu"
