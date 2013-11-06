@@ -1,13 +1,4 @@
-from py2neo import neo4j
-import timeit
-import numpy as np
-import re
-
-graph_db = neo4j.GraphDatabaseService()
-
-def run_query(query, params):
-	query = neo4j.CypherQuery(graph_db, query)	
-	return query.execute(**params).data
+import query_profiler as qp
 
 attempts = [
 {"query": '''MATCH (player:Player)-[:played]->stats-[:in]->game, stats-[:for]->team
@@ -38,15 +29,4 @@ attempts = [
 			 LIMIT 10'''},
 ]
 
-print ""
-
-for attempt in attempts:
-	query = attempt["query"]
-	potential_params = attempt.get("params")
-	params = {} if potential_params == None else potential_params
-
-	timings = timeit.repeat("run_query(query, params)", setup="from __main__ import run_query, query, params", number=10, repeat=3)
-
-	print re.sub('\n[ \t]', '\n', re.sub('[ \t]+', ' ', query))
-	print "Min", np.min(timings), "Mean", np.mean(timings), "95%", np.percentile(timings, 95), "Max", np.max(timings)
-	print ""
+qp.profile(attempts, iterations=5, runs=3)
