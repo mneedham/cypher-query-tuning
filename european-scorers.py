@@ -5,12 +5,12 @@ import query_profiler as qp
 
 attempts = [
 {"query": '''MATCH (continent:Continent)<-[:is_in]-(country:Country)<-[:comes_from]-(player:Player)
-			 WHERE continent.name = "Europe" 
-     		 WITH player, country
-			 MATCH (player)-[:played]->(stats)-[:for]->(team:Team)
-			 RETURN player.name, SUM(stats.goals) AS goals, team.name, country.name
-			 ORDER BY goals DESC
-			 LIMIT 10'''},
+             WHERE continent.name = "Europe" 
+             WITH player, country
+             MATCH (player)-[:played]->(stats)-[:for]->(team:Team)
+             RETURN player.name, SUM(stats.goals) AS goals, team.name, country.name
+             ORDER BY goals DESC
+             LIMIT 10'''},
 
 {"query": '''MATCH (continent:Continent)<-[:is_in]-(country)<-[:comes_from]-(player)
 			 WHERE continent.name = "Europe" 
