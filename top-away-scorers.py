@@ -30,7 +30,14 @@ attempts = [
              MATCH (player:Player)-[:played]->stats-[:in]->game, stats-[:for]->team
              RETURN player.name, SUM(stats.goals) AS goals
              ORDER BY goals DESC
-             LIMIT 10'''}
+             LIMIT 10'''},
+{"query": '''MATCH (game)<-[:away_team]-(team:Team)
+             WITH game, team
+             MATCH (player:Player)-[:played]->stats-[:in]->game, stats-[:for]->team
+             WHERE stats.goals > 0
+             RETURN player.name, SUM(stats.goals) AS goals
+             ORDER BY goals DESC
+             LIMIT 10'''}             
 ]
 
 qp.profile(attempts, iterations=5, runs=3)
