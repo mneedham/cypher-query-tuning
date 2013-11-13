@@ -70,3 +70,7 @@ This is the template to follow:
     ]
 
     qp.profile(attempts, iterations=5, runs=3)
+
+#### Stuck?
+
+Ping me on twitter [@markhneedham](https://twitter.com/markhneedham) or mark@markhneedham.com
