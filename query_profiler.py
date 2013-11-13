@@ -13,5 +13,5 @@ import neo4j
 		timings = timeit.repeat("neo4j.Neo4j().query(a)", setup=setup, number=iterations, repeat=runs)
 		print ""		
 		print re.sub('\n[ \t]', '\n', re.sub('[ \t]+', ' ', attempt['query']))
-		print "Min", np.min(timings), "Mean", np.mean(timings), "95%", np.percentile(timings, 95), "Max", np.max(timings)
+		print "Min", np.min(timings), "50%", np.percentile(timings,50), "95%", np.percentile(timings, 95), "Max", np.max(timings)
 		print ""
