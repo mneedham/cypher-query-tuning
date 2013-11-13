@@ -8,25 +8,25 @@ I'm using version 1.6 on py2neo so get that version if you can.
 
 You'll also need to replace the following function in 'util.py' in order that UTF-8 characters get handled correctly:
 
-    ````python
-    def is_collection(obj):
-        """ Returns true for any iterable which is not a string or byte sequence.
-        """
-        if isinstance(obj, bytes):
-            return False
-        try:
-            iter(obj)
-        except TypeError:
-            return False
-        try:
-            if type(obj) is list:
-                hasattr(None, obj)
-            else:
-                hasattr(None, obj.encode("utf-8"))
-        except TypeError:
-            return True
+````python
+def is_collection(obj):
+    """ Returns true for any iterable which is not a string or byte sequence.
+    """
+    if isinstance(obj, bytes):
         return False
-    ````    
+    try:
+        iter(obj)
+    except TypeError:
+        return False
+    try:
+        if type(obj) is list:
+            hasattr(None, obj)
+        else:
+            hasattr(None, obj.encode("utf-8"))
+    except TypeError:
+        return True
+    return False
+````    
 
 The data set is on dropbox and you can download it with this command:
 
